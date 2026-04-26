@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="The Dispatch — Independent editorial journalism from Jerusalem. Breaking news, analysis, and opinion on Israel, the Middle East, and the Jewish world." />
+    <title>The Dispatch — Independent · Jerusalem</title>
+
+    <!-- Schema.org NewsMediaOrganization -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "The Dispatch",
+    "url": "https://thedispatch.com",
+    "logo": "https://thedispatch.com/logo.png",
+    "foundingDate": "2025",
+    "ethicsPolicy": "https://thedispatch.com/ethics"
+  }
+  </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+    <!-- ════════ HEADER ════════ -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="brand">
+                <span class="brand-icon">◈</span>
+                <div>
+                    <span class="brand-name">The Dispatch</span>
+                    <span class="brand-sub">Independent · Jerusalem</span>
+                </div>
+            </a>
+
+            <nav class="nav" id="mainNav">
+                <a href="#news" class="nav-a active">News</a>
+                <a href="#opinion" class="nav-a">Opinion</a>
+                <a href="#analysis" class="nav-a">Analysis</a>
+                <a href="#world" class="nav-a">World</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" id="searchBtn" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                </button>
+                <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                </button>
+                <a href="#subscribe" class="btn-sub">Subscribe</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ════════ SEARCH OVERLAY ════════ -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-panel">
+            <div class="search-bar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input type="search" id="searchInput" placeholder="Search stories, topics, authors…"
+                    autocomplete="off" />
+                <kbd>ESC</kbd>
+            </div>
+            <div class="search-trending">
+                <span class="trending-label">Trending</span>
+                <div class="trending-tags">
+                    <span class="tag">Doha Summit</span>
+                    <span class="tag">Ceasefire</span>
+                    <span class="tag">IAEA</span>
+                    <span class="tag">Lebanon</span>
+                    <span class="tag">Hostages</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════ BREAKING BAR ════════ -->
+    <div class="breaking-bar" id="breakingBar">
+        <span class="breaking-badge">Breaking</span>
+        <p class="breaking-text" id="breakingText">Doha ceasefire framework enters final ratification stage —
+            three-nation envoys remain in closed session</p>
+        <button class="breaking-close" id="breakingClose" aria-label="Dismiss">✕</button>
+    </div>
+
+    <!-- ════════ DATELINE ════════ -->
+    <div class="dateline">
+        <span id="greeting">Good Evening</span>
+        <span class="dot">·</span>
+        <time id="dateTime"></time>
+        <span class="dot hide-mobile">·</span>
+        <span class="dateline-loc hide-mobile">Dhaka, Bangladesh</span>
+        <span class="free-counter hide-mobile">3 free articles remaining</span>
+    </div>
+
+    <main>
+
+        <!-- ════════ HERO GRID (4-story weighted) ════════ -->
+        <section class="hero-grid" id="heroGrid" aria-label="Featured stories">
+            <!-- JS injects 4 cards here -->
+        </section>
+
+        <!-- ════════ TICKER ════════ -->
+        <div class="ticker" role="marquee" aria-label="Live updates">
+            <div class="ticker-label">Live</div>
+            <div class="ticker-track">
+                <div class="ticker-content" id="tickerContent"></div>
+            </div>
+        </div>
+
+        <!-- ════════ BODY LAYOUT ════════ -->
+        <div class="body-layout">
+
+            <!-- MAIN FEED -->
+            <div class="main-feed">
+
+                <!-- Latest Stories -->
+                <section id="news" aria-label="Latest stories">
+                    <div class="section-head">
+                        <h2 class="section-title">Latest</h2>
+                        <span class="section-rule"></span>
+                    </div>
+                    <div class="story-feed" id="storyFeed"></div>
+                </section>
+
+                <!-- Ad Break -->
+                <div class="ad-slot" aria-label="Advertisement">
+                    <span class="ad-label">Advertisement</span>
+                    <div class="ad-placeholder">
+                        <span>Ad · 728×90</span>
+                    </div>
+                </div>
+
+                <!-- Opinion -->
+                <section id="opinion" aria-label="Opinion">
+                    <div class="section-head">
+                        <h2 class="section-title">Opinion</h2>
+                        <span class="section-rule"></span>
+                    </div>
+                    <div class="opinion-feed" id="opinionFeed"></div>
+                </section>
+
+                <!-- Newsletter CTA -->
+                <div class="newsletter-cta" id="subscribe">
+                    <div class="nl-icon">✉</div>
+                    <h3 class="nl-title">The Morning Briefing</h3>
+                    <p class="nl-desc">Five stories that define the day. Delivered at 07:00 Jerusalem time. Trusted by
+                        240,000 readers in 61 countries.</p>
+                    <form class="nl-form" id="nlForm">
+                        <input type="email" class="nl-input" placeholder="you@email.com" required />
+                        <button type="submit" class="nl-btn">Subscribe</button>
+                    </form>
+                    <span class="nl-note">Free · No spam · Unsubscribe anytime</span>
+                </div>
+
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+
+                <!-- Most Read -->
+                <div class="sidebar-card" id="mostReadCard">
+                    <h3 class="sidebar-title">Most Read</h3>
+                    <ol class="most-read" id="mostRead"></ol>
+                </div>
+
+                <!-- Sticky Ad -->
+                <div class="ad-slot sidebar-ad" aria-label="Advertisement">
+                    <span class="ad-label">Advertisement</span>
+                    <div class="ad-placeholder tall">
+                        <span>Ad · 300×600</span>
+                    </div>
+                </div>
+
+                <!-- Live Pulse -->
+                <div class="sidebar-card" id="pulseCard">
+                    <h3 class="sidebar-title">
+                        <span class="pulse-dot"></span>
+                        The Pulse
+                    </h3>
+                    <div class="pulse-feed" id="pulseFeed"></div>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- ════════ FOOTER ════════ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="brand-icon">◈</span>
+                <span class="footer-name">The Dispatch</span>
+                <p class="footer-desc">Independent, centrist editorial from Jerusalem since 2025.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h5>Sections</h5>
+                    <a href="#">News</a><a href="#">Opinion</a><a href="#">Analysis</a><a href="#">World</a>
+                </div>
+                <div class="footer-col">
+                    <h5>About</h5>
+                    <a href="#">Editorial Policy</a><a href="#">Corrections</a><a href="#">Careers</a><a
+                        href="#">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a><a href="#">GDPR</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 The Dispatch Media Group. Statements marked "reports suggest" have not met dual-source
+                verification. Opinion reflects author's views only.</p>
+        </div>
+    </footer>
+
+    <!-- ════════ PAYWALL MODAL ════════ -->
+    <div class="paywall-overlay" id="paywallOverlay">
+        <div class="paywall-modal">
+            <button class="paywall-close" id="paywallClose">✕</button>
+            <h2 class="paywall-title">You've read your 3 free articles</h2>
+            <p class="paywall-desc">Subscribe for unlimited access to award-winning journalism from Jerusalem.</p>
+            <div class="paywall-plans">
+                <div class="plan">
+                    <span class="plan-period">Monthly</span>
+                    <span class="plan-price">$9.99<small>/mo</small></span>
+                </div>
+                <div class="plan featured">
+                    <span class="plan-badge">Best Value</span>
+                    <span class="plan-period">Annual</span>
+                    <span class="plan-price">$79<small>/yr</small></span>
+                    <span class="plan-save">Save 34%</span>
+                </div>
+            </div>
+            <button class="paywall-btn">Start Free Trial</button>
+            <p class="paywall-fine">Cancel anytime. 7-day free trial for new subscribers.</p>
+        </div>
+    </div>
+
+    <!-- Back to top -->
+    <button class="btt" id="btt" aria-label="Back to top">↑</button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

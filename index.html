@@ -46,7 +46,7 @@ h1,h2,h3{font-family:'Sora','Hind Siliguri',sans-serif}
 @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-46px,42px) scale(1.1)}}
 
 /* ---------- progress + nav ---------- */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:1000}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#38bdf8);z-index:1000;box-shadow:0 0 10px rgba(37,99,235,.35)}
 header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .3s,box-shadow .3s;border-bottom:1px solid transparent}
 header.scrolled{background:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-color:rgba(255,255,255,.18);box-shadow:0 6px 24px rgba(30,50,90,.06),inset 0 1px 0 rgba(255,255,255,.6)}
 .nav{max-width:var(--maxw);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
@@ -65,6 +65,12 @@ header.scrolled{background:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(14
 .btn-ghost{background:#fff;border-color:#c9d4e6;color:var(--blue)}
 .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
 .btn-sm{padding:8px 16px;font-size:.86rem;border-radius:10px}
+.nav-links a{position:relative}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:100%;border-radius:2px;background:linear-gradient(90deg,#2563eb,#38bdf8);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.nav-links a:not(.btn):hover::after,.nav-links a:not(.btn).active::after{transform:scaleX(1);transform-origin:left}
+.search-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #c9d4e6;color:var(--muted);border-radius:10px;padding:8px 13px;font:inherit;font-size:.84rem;font-weight:500;cursor:pointer;transition:border-color .2s,color .2s,box-shadow .2s;flex:none}
+.search-btn:hover{border-color:var(--blue);color:var(--txt);box-shadow:var(--shadow)}
+.search-btn kbd{font-family:'JetBrains Mono',monospace;font-size:.68rem;background:var(--bg2);border:1px solid var(--brd);border-bottom-width:2px;border-radius:5px;padding:1px 5px}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:24px;height:2px;background:var(--txt);margin:5px 0;transition:.3s}
 
@@ -100,8 +106,9 @@ section{padding:104px 0 30px}
 .hero-stats{display:flex;gap:38px;margin-top:48px;flex-wrap:wrap}
 .stat .num{font-family:'Sora',sans-serif;font-size:1.65rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat .lbl{font-size:.8rem;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
-.profilecard{border-radius:28px;padding:28px;transform:rotate(1.2deg);transition:transform .4s}
-.profilecard:hover{transform:rotate(0)}
+.profilecard{border-radius:28px;padding:28px;transform:rotate(1.2deg);transition:transform .4s;animation:cardfloat 7.5s ease-in-out infinite}
+@keyframes cardfloat{0%,100%{transform:rotate(1.2deg) translateY(0)}50%{transform:rotate(1.2deg) translateY(-9px)}}
+.profilecard:hover{animation-play-state:paused}
 .pc-top{display:flex;gap:16px;align-items:center}
 .pc-avatar{width:64px;height:64px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:.5px;flex:none;box-shadow:0 10px 22px rgba(99,60,220,.32)}
 .pc-name{font-family:'Sora',sans-serif;font-weight:700;font-size:1.22rem;line-height:1.3}
@@ -118,6 +125,47 @@ section{padding:104px 0 30px}
 .scroll-hint .mouse{width:25px;height:42px;border:2px solid #b6c2d8;border-radius:14px;position:relative}
 .scroll-hint .mouse::after{content:"";position:absolute;left:50%;top:7px;width:5px;height:9px;margin-left:-2.5px;border-radius:3px;background:var(--blue);animation:wheel 1.8s ease-in-out infinite}
 @keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(13px);opacity:0}100%{opacity:0}}
+
+/* ---------- smart additions (2026-10-31) ---------- */
+.hero{position:relative;overflow:hidden}
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;border-radius:50%;filter:blur(58px);opacity:.55;will-change:transform}
+.aurora .a1{width:470px;height:470px;left:-130px;top:-150px;background:radial-gradient(circle at 38% 38%,#dbeafe,#93c5fd 58%,rgba(147,197,253,0) 74%);animation:aurora-a 18s ease-in-out infinite alternate}
+.aurora .a2{width:400px;height:400px;right:-110px;top:2%;background:radial-gradient(circle at 40% 40%,#ede9fe,#c4b5fd 58%,rgba(196,181,253,0) 74%);animation:aurora-b 23s ease-in-out infinite alternate}
+.aurora .a3{width:520px;height:520px;left:33%;bottom:-280px;background:radial-gradient(circle at 40% 40%,#e0f2fe,#7dd3fc 58%,rgba(125,211,252,0) 74%);animation:aurora-c 27s ease-in-out infinite alternate}
+@keyframes aurora-a{from{transform:translate(0,0) scale(1)}to{transform:translate(96px,54px) scale(1.16)}}
+@keyframes aurora-b{from{transform:translate(0,0) scale(1.08)}to{transform:translate(-84px,66px) scale(.94)}}
+@keyframes aurora-c{from{transform:translate(0,0) scale(.95)}to{transform:translate(-70px,-58px) scale(1.12)}}
+.hero .wrap{position:relative;z-index:1}
+.hero .scroll-hint{position:relative;z-index:1}
+.dhaka-chip{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:7px 14px;border-radius:999px;background:#eef3ff;border:1px solid #d7e3fb;color:var(--muted);font-size:.83rem;font-weight:500}
+.dhaka-chip .dotlive{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse-blue 1.8s ease-out infinite}
+.dhaka-chip b{color:var(--txt);font-family:'JetBrains Mono',monospace;font-weight:600}
+@keyframes pulse-blue{0%{box-shadow:0 0 0 0 rgba(37,99,235,.4)}70%{box-shadow:0 0 0 8px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
+.copy-note{font-size:.88rem;color:#047857;font-weight:600;min-height:1.3em;margin-top:14px;opacity:0;transform:translateY(3px);transition:opacity .3s,transform .3s}
+.copy-note.show{opacity:1;transform:none}
+#toTop{position:fixed;right:22px;bottom:22px;z-index:950;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:1.15rem;color:var(--blue);cursor:pointer;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(14px);transition:opacity .35s,transform .35s,visibility .35s}
+#toTop.show{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+#toTop:hover{transform:translateY(-3px)}
+.palette-overlay{position:fixed;inset:0;z-index:1200;background:rgba(14,21,38,.38);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:12vh 18px 18px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,visibility .18s}
+.palette-overlay.open{opacity:1;visibility:visible;pointer-events:auto}
+.palette{width:100%;max-width:600px;border-radius:20px;padding:10px;transform:translateY(-10px) scale(.985);transition:transform .18s;max-height:70vh;display:flex;flex-direction:column}
+.palette-overlay.open .palette{transform:none}
+.palette input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:1.02rem;padding:12px 14px;color:var(--txt);border-bottom:1px solid rgba(37,99,235,.30)}
+.palette input::placeholder{color:#93a4c4}
+.pal-list{overflow-y:auto;padding:6px}
+.pal-item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;font:inherit;padding:10px 12px;border-radius:12px;cursor:pointer;color:var(--txt)}
+.pal-item .ic{width:32px;height:32px;flex:none;border-radius:9px;background:#eef3ff;display:grid;place-items:center;font-size:.95rem}
+.pal-item .t{font-weight:600;font-size:.95rem}
+.pal-item .s{color:var(--muted);font-size:.8rem}
+.pal-item.sel{background:#eef3ff}
+.pal-empty{padding:16px 12px;color:var(--muted);font-size:.9rem}
+.pal-foot{display:flex;gap:16px;padding:9px 14px 4px;color:#93a4c4;font-size:.75rem;font-family:'JetBrains Mono',monospace}
+body.pal-open{overflow:hidden}
+.proj{position:relative}
+.proj .glare{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.30),transparent 46%);opacity:0;transition:opacity .3s}
+.proj:hover .glare{opacity:1}
+@media (prefers-reduced-motion:reduce){.aurora .a1,.aurora .a2,.aurora .a3{animation:none}.profilecard{animation:none}}
 
 /* ---------- marquee ---------- */
 .marquee{border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);padding:18px 0;overflow:hidden;background:#fff}
@@ -154,8 +202,8 @@ section{padding:104px 0 30px}
 
 /* ---------- projects ---------- */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.proj{background:var(--card);border:1px solid var(--brd);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
-.proj:hover{transform:translateY(-7px);box-shadow:var(--shadow-lg)}
+.proj{background:var(--card);border:1px solid var(--brd);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .18s ease-out,box-shadow .3s}
+.proj:hover{box-shadow:var(--shadow-lg)}
 .proj .thumb{height:150px;position:relative;display:flex;align-items:flex-end;padding:16px;overflow:hidden}
 .proj .thumb .glyph{position:absolute;right:10px;top:2px;font-size:6.2rem;opacity:.14;font-family:'Sora',sans-serif;font-weight:800;line-height:1;color:#0e1526}
 .brand-tile{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;align-items:center;padding:9px 18px 8px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.65);border-radius:16px;box-shadow:0 10px 24px rgba(120,40,90,.13),inset 0 1px 0 rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
@@ -217,6 +265,9 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
   .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid #eef1f7}
   .nav-links .btn{margin-top:14px}
   .burger{display:block}
+  .nav-links a:not(.btn)::after{bottom:9px}
+  .search-btn .lbl,.search-btn kbd{display:none}
+  .search-btn{padding:8px 10px}
   .hero{padding-top:120px}
   .hero-stats{gap:24px}
   .research{padding:26px 20px}
@@ -247,12 +298,14 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
       <a href="#journey"><span class="no">05.</span>Journey</a>
       <a class="btn btn-ghost btn-sm" href="#contact">Contact</a>
     </div>
+    <button class="search-btn" id="searchBtn" type="button" aria-label="Search and jump to sections" title="Jump to… (Ctrl+K)"><span aria-hidden="true">⌕</span><span class="lbl">Jump to…</span><kbd>Ctrl K</kbd></button>
   </nav>
 </header>
 
 <main id="top">
   <!-- ================= HERO ================= -->
   <section class="hero">
+    <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
     <div class="wrap hero-grid">
       <div>
         <div class="badge"><span class="pulse"></span> Open to freelance &amp; collaboration</div>
@@ -270,6 +323,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
           <div class="stat"><div class="num"><span class="count" data-to="80">0</span></div><div class="lbl">Research scenarios</div></div>
           <div class="stat"><div class="num"><span class="count" data-to="10">0</span>+</div><div class="lbl">Technologies</div></div>
         </div>
+        <div class="dhaka-chip"><span class="dotlive"></span><span>Dhaka, Bangladesh — <b id="dhakaTime">--:--</b></span></div>
       </div>
       <div class="profilecard glass reveal in">
         <div class="pc-top">
@@ -361,6 +415,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
       <p class="sec-sub reveal">Real products, live on the internet — not tutorial clones.</p>
       <div class="proj-grid">
         <article class="proj reveal">
+          <span class="glare" aria-hidden="true"></span>
           <div class="thumb t-paw"><span class="glyph">🐾</span><span class="tag-live"><i></i>LIVE PRODUCT</span></div>
           <div class="body">
             <h3>PawMatch — Pet Care &amp; Adoption</h3>
@@ -370,6 +425,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
           </div>
         </article>
         <article class="proj reveal d1">
+          <span class="glare" aria-hidden="true"></span>
           <div class="thumb t-ai"><span class="glyph">AI</span><span class="tag-live"><i></i>LIVE FEATURE</span></div>
           <div class="body">
             <h3>AI Pet Symptom Checker</h3>
@@ -379,6 +435,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
           </div>
         </article>
         <article class="proj reveal d2">
+          <span class="glare" aria-hidden="true"></span>
           <div class="thumb t-chat"><span class="brand-tile"><span class="bt-mark">চিঠি</span><span class="bt-sub">CHITTHI</span></span><span class="tag-soft">PERSONAL PROJECT</span></div>
           <div class="body">
             <h3><span class="bn">চিঠি</span> · Chitthi Messenger</h3>
@@ -431,8 +488,10 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
       <p>Have a project, a freelance automation job, or a research idea? My inbox is open — I usually reply within a day.</p>
       <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
         <a class="btn btn-grad" href="mailto:talukder_41250202809@nub.ac.bd">Say hello ✉</a>
+        <button class="btn btn-ghost" id="copyEmail" type="button">Copy email</button>
         <a class="btn btn-ghost" href="https://github.com/maruftalukder1" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
+      <div class="copy-note" id="copyNote" role="status" aria-live="polite"></div>
     </div>
   </section>
 </main>
@@ -443,6 +502,15 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
     <div class="mono">© <span id="yr">2026</span> Maruf Talukder · maruftalukder.engineer</div>
   </div>
 </footer>
+
+<div class="palette-overlay" id="paletteOverlay">
+  <div class="palette glass" role="dialog" aria-modal="true" aria-label="Jump to a section or action">
+    <input id="paletteInput" type="text" placeholder="Jump to a section, project or action…" autocomplete="off" aria-label="Search sections and actions">
+    <div class="pal-list" id="paletteList" role="listbox"></div>
+    <div class="pal-foot"><span>↑↓ navigate</span><span>↵ open</span><span>esc close</span></div>
+  </div>
+</div>
+<button id="toTop" class="glass" type="button" aria-label="Back to top" title="Back to top">↑</button>
 
 <script>
 // duplicate marquee content for a seamless loop
@@ -515,6 +583,182 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
     });
   },{rootMargin:'-40% 0px -55% 0px'});
   document.querySelectorAll('section[id]').forEach(function(s){io.observe(s);});
+})();
+
+// live Dhaka clock chip
+(function(){
+  var el=document.getElementById('dhakaTime');if(!el)return;
+  var fmt;
+  try{fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dhaka',hour:'2-digit',minute:'2-digit',hour12:true});}catch(e){return;}
+  function upd(){el.textContent=fmt.format(new Date());}
+  upd();setInterval(upd,20000);
+})();
+
+// back-to-top glass button
+(function(){
+  var b=document.getElementById('toTop');if(!b)return;
+  function on(){b.classList.toggle('show',window.scrollY>560);}
+  window.addEventListener('scroll',on,{passive:true});on();
+  b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+
+// copy-email with animated success feedback
+(function(){
+  var btn=document.getElementById('copyEmail'),note=document.getElementById('copyNote');
+  if(!btn||!note)return;
+  var email='talukder_41250202809@nub.ac.bd',t=null;
+  function done(){
+    note.textContent='✓ Email copied — '+email;
+    note.classList.add('show');
+    clearTimeout(t);t=setTimeout(function(){note.classList.remove('show');},2800);
+  }
+  function fallback(){
+    var ta=document.createElement('textarea');
+    ta.value=email;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}
+    catch(e){note.textContent=email;note.classList.add('show');}
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(done,fallback);
+    }else fallback();
+  });
+})();
+
+// command palette (Ctrl+K / Cmd+K)
+(function(){
+  var overlay=document.getElementById('paletteOverlay'),
+      input=document.getElementById('paletteInput'),
+      list=document.getElementById('paletteList'),
+      openBtn=document.getElementById('searchBtn');
+  if(!overlay||!input||!list)return;
+  var email='talukder_41250202809@nub.ac.bd';
+  function jump(sel){var el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth'});}
+  function openUrl(u){window.open(u,'_blank','noopener');}
+  var items=[
+    {t:'About me',s:'Section · 01',ic:'👋',kw:'about bio profile maruf introduction',go:function(){jump('#about');}},
+    {t:'Skills & tools',s:'Section · 02',ic:'🛠️',kw:'skills tools stack languages c++ typescript python react',go:function(){jump('#skills');}},
+    {t:'Featured projects',s:'Section · 03',ic:'🚀',kw:'projects work portfolio pawmatch chitthi symptom',go:function(){jump('#projects');}},
+    {t:'PawMatch — Pet Care & Adoption',s:'Project · live at xdeveloper.tech',ic:'🐾',kw:'pawmatch pet care adoption live product',go:function(){openUrl('https://www.xdeveloper.tech');}},
+    {t:'AI Pet Symptom Checker',s:'Project · live feature',ic:'🩺',kw:'symptom checker ai triage gemini vision',go:function(){openUrl('https://www.xdeveloper.tech');}},
+    {t:'চিঠি · Chitthi Messenger',s:'Project · more on GitHub',ic:'💬',kw:'chitthi messenger chat webrtc',go:function(){openUrl('https://github.com/maruftalukder1');}},
+    {t:'Research',s:'Section · 04',ic:'📄',kw:'research paper escalate only nsys qpaiN publication',go:function(){jump('#research');}},
+    {t:'My journey',s:'Section · 05',ic:'🧭',kw:'journey timeline history career',go:function(){jump('#journey');}},
+    {t:'Contact',s:'Section · 06',ic:'📬',kw:'contact hire email hello reach',go:function(){jump('#contact');}},
+    {t:'Copy my email',s:'Action · '+email,ic:'📋',kw:'copy email address clipboard',go:function(){if(navigator.clipboard)navigator.clipboard.writeText(email);}},
+    {t:'Email me',s:'Action · opens your mail app',ic:'✉️',kw:'email mail send message say hello',go:function(){location.href='mailto:'+email;}},
+    {t:'GitHub profile',s:'Action · github.com/maruftalukder1',ic:'🐙',kw:'github code repositories profile',go:function(){openUrl('https://github.com/maruftalukder1');}},
+    {t:'Back to top',s:'Action',ic:'⬆️',kw:'top start home beginning',go:function(){window.scrollTo({top:0,behavior:'smooth'});}}
+  ];
+  function tokMatch(tok,hay){
+    if(hay.indexOf(tok)>-1)return true;
+    var i=0;
+    for(var j=0;j<hay.length&&i<tok.length;j++){if(hay[j]===tok[i])i++;}
+    return i===tok.length;
+  }
+  function matches(q,it){
+    var hay=(it.t+' '+it.kw+' '+it.s).toLowerCase();
+    return q.toLowerCase().split(/\s+/).filter(Boolean).every(function(tok){return tokMatch(tok,hay);});
+  }
+  var sel=0,current=[];
+  function markSel(){
+    var els=list.querySelectorAll('.pal-item');
+    els.forEach(function(el,i){
+      el.classList.toggle('sel',i===sel);
+      if(i===sel)el.scrollIntoView({block:'nearest'});
+    });
+  }
+  function render(){
+    var q=input.value.trim();
+    current=items.filter(function(it){return matches(q,it);});
+    if(sel>=current.length)sel=Math.max(0,current.length-1);
+    list.innerHTML='';
+    if(!current.length){
+      var d=document.createElement('div');d.className='pal-empty';
+      d.textContent='No matches — try "projects", "email" or "research".';
+      list.appendChild(d);return;
+    }
+    current.forEach(function(it,i){
+      var b=document.createElement('button');
+      b.type='button';b.className='pal-item'+(i===sel?' sel':'');b.setAttribute('role','option');
+      var ic=document.createElement('span');ic.className='ic';ic.textContent=it.ic;
+      var tx=document.createElement('span');
+      var tt=document.createElement('span');tt.className='t';tt.textContent=it.t;
+      var ss=document.createElement('span');ss.className='s';ss.textContent=it.s;
+      tx.appendChild(tt);tx.appendChild(document.createElement('br'));tx.appendChild(ss);
+      b.appendChild(ic);b.appendChild(tx);
+      b.addEventListener('click',function(){choose(i);});
+      b.addEventListener('mousemove',function(){if(sel!==i){sel=i;markSel();}});
+      list.appendChild(b);
+    });
+  }
+  function choose(i){var it=current[i];if(!it)return;close();setTimeout(function(){it.go();},40);}
+  function open(){
+    overlay.classList.add('open');document.body.classList.add('pal-open');
+    input.value='';sel=0;render();
+    setTimeout(function(){input.focus();},40);
+  }
+  function close(){overlay.classList.remove('open');document.body.classList.remove('pal-open');}
+  function isOpen(){return overlay.classList.contains('open');}
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&(e.key==='k'||e.key==='K')){
+      e.preventDefault();if(isOpen())close();else open();return;
+    }
+    if(!isOpen())return;
+    if(e.key==='Escape'){close();}
+    else if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,current.length-1);markSel();}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0);markSel();}
+    else if(e.key==='Enter'){e.preventDefault();choose(sel);}
+  });
+  input.addEventListener('input',function(){sel=0;render();});
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+  if(openBtn)openBtn.addEventListener('click',open);
+})();
+
+// pointer-tracked tilt + glare on project cards (fine pointers only)
+(function(){
+  if(!window.matchMedia)return;
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('.proj').forEach(function(card){
+    var raf=null,nx=0,ny=0;
+    card.addEventListener('pointermove',function(e){
+      var r=card.getBoundingClientRect();
+      nx=(e.clientX-r.left)/r.width;ny=(e.clientY-r.top)/r.height;
+      card.style.setProperty('--gx',(nx*100)+'%');
+      card.style.setProperty('--gy',(ny*100)+'%');
+      if(!raf)raf=requestAnimationFrame(apply);
+    });
+    function apply(){
+      raf=null;
+      var rx=((0.5-ny)*5).toFixed(2),ry=((nx-0.5)*6).toFixed(2);
+      var sx=(-(nx-0.5)*22).toFixed(1),sy=(20+(0.5-ny)*14).toFixed(1);
+      card.style.transform='perspective(1100px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-6px)';
+      card.style.boxShadow=sx+'px '+sy+'px 44px rgba(30,50,90,.16)';
+    }
+    card.addEventListener('pointerleave',function(){
+      if(raf)cancelAnimationFrame(raf);raf=null;
+      card.style.transform='';card.style.boxShadow='';
+    });
+  });
+})();
+
+// magnetic hover on primary CTAs (fine pointers only)
+(function(){
+  if(!window.matchMedia)return;
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('.btn-grad, .hero-cta .btn-ghost').forEach(function(btn){
+    btn.addEventListener('pointermove',function(e){
+      var r=btn.getBoundingClientRect();
+      var x=((e.clientX-r.left-r.width/2)*0.18).toFixed(1),
+          y=((e.clientY-r.top-r.height/2)*0.28).toFixed(1);
+      btn.style.transform='translate('+x+'px,'+y+'px)';
+    });
+    btn.addEventListener('pointerleave',function(){btn.style.transform='';});
+  });
 })();
 
 document.getElementById('yr').textContent=new Date().getFullYear();

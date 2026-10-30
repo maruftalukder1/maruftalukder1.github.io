@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://www.maruftalukder.engineer/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#fbfcfe; --bg2:#f2f5fa; --card:#ffffff; --brd:#e4e9f2;
@@ -22,10 +22,14 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.65;overflow-x:hidden}
+body{background:var(--bg);color:var(--txt);font-family:'Inter','Hind Siliguri',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.65;overflow-x:hidden}
 ::selection{background:rgba(37,99,235,.18)}
 a{color:inherit;text-decoration:none}
-h1,h2,h3{font-family:'Sora',sans-serif}
+h1,h2,h3{font-family:'Sora','Hind Siliguri',sans-serif}
+.bn{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif}
+
+/* ---------- liquid glass (used sparingly: hero profile card, scrolled header, mobile nav) ---------- */
+.glass{background:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border:1px solid rgba(255,255,255,.18);box-shadow:0 24px 48px rgba(30,50,90,.12),0 0 0 1px rgba(30,50,90,.04),inset 0 1px 0 rgba(255,255,255,.65),inset 0 -1px 0 rgba(255,255,255,.22),inset 1px 0 0 rgba(255,255,255,.14),inset -1px 0 0 rgba(255,255,255,.14)}
 
 /* ---------- soft animated background ---------- */
 .bg-fx{position:fixed;inset:0;z-index:-2;background:
@@ -44,7 +48,7 @@ h1,h2,h3{font-family:'Sora',sans-serif}
 /* ---------- progress + nav ---------- */
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:1000}
 header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .3s,box-shadow .3s;border-bottom:1px solid transparent}
-header.scrolled{background:rgba(251,252,254,.88);backdrop-filter:blur(14px);border-color:var(--brd);box-shadow:0 6px 24px rgba(30,50,90,.05)}
+header.scrolled{background:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-color:rgba(255,255,255,.18);box-shadow:0 6px 24px rgba(30,50,90,.06),inset 0 1px 0 rgba(255,255,255,.6)}
 .nav{max-width:var(--maxw);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:.4px}
 .logo .dot{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -96,13 +100,20 @@ section{padding:104px 0 30px}
 .hero-stats{display:flex;gap:38px;margin-top:48px;flex-wrap:wrap}
 .stat .num{font-family:'Sora',sans-serif;font-size:1.65rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat .lbl{font-size:.8rem;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
-.codecard{background:#fff;border:1px solid var(--brd);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);transform:rotate(1.2deg);transition:transform .4s}
-.codecard:hover{transform:rotate(0)}
-.codecard .bar{display:flex;gap:8px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--brd);background:var(--bg2)}
-.codecard .bar i{width:12px;height:12px;border-radius:50%;display:block}
-.codecard .bar .f{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted)}
-.codecard pre{padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.75;overflow-x:auto;color:#33415c}
-.tk-k{color:#7c3aed}.tk-s{color:#15803d}.tk-f{color:#2563eb}.tk-p{color:#64748b}.tk-n{color:#d97706}
+.profilecard{border-radius:28px;padding:28px;transform:rotate(1.2deg);transition:transform .4s}
+.profilecard:hover{transform:rotate(0)}
+.pc-top{display:flex;gap:16px;align-items:center}
+.pc-avatar{width:64px;height:64px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:.5px;flex:none;box-shadow:0 10px 22px rgba(99,60,220,.32)}
+.pc-name{font-family:'Sora',sans-serif;font-weight:700;font-size:1.22rem;line-height:1.3}
+.pc-role{color:var(--muted);font-size:.9rem;line-height:1.45}
+.pc-status{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:6px 13px;border-radius:999px;background:rgba(236,253,245,.75);border:1px solid rgba(167,232,205,.8);color:#047857;font-size:.8rem;font-weight:600}
+.pc-status .pulse{width:8px;height:8px;border-radius:50%;background:#10b981;animation:pulse 1.6s ease-out infinite}
+.pc-rows{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.pc-row{display:flex;gap:14px;font-size:.94rem;line-height:1.5}
+.pc-row .k{width:88px;flex:none;color:var(--muted);font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;padding-top:3px}
+.pc-row .v{font-weight:500}
+.pc-now{margin-top:20px;padding-top:16px;border-top:1px solid rgba(30,50,90,.09);font-size:.94rem;color:var(--muted)}
+.pc-now b{color:var(--txt);font-weight:600}
 .scroll-hint{display:flex;justify-content:center;margin-top:58px}
 .scroll-hint .mouse{width:25px;height:42px;border:2px solid #b6c2d8;border-radius:14px;position:relative}
 .scroll-hint .mouse::after{content:"";position:absolute;left:50%;top:7px;width:5px;height:9px;margin-left:-2.5px;border-radius:3px;background:var(--blue);animation:wheel 1.8s ease-in-out infinite}
@@ -147,6 +158,10 @@ section{padding:104px 0 30px}
 .proj:hover{transform:translateY(-7px);box-shadow:var(--shadow-lg)}
 .proj .thumb{height:150px;position:relative;display:flex;align-items:flex-end;padding:16px;overflow:hidden}
 .proj .thumb .glyph{position:absolute;right:10px;top:2px;font-size:6.2rem;opacity:.14;font-family:'Sora',sans-serif;font-weight:800;line-height:1;color:#0e1526}
+.brand-tile{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;align-items:center;padding:9px 18px 8px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.65);border-radius:16px;box-shadow:0 10px 24px rgba(120,40,90,.13),inset 0 1px 0 rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.brand-tile .bt-mark{font-family:'Hind Siliguri','Noto Sans Bengali',sans-serif;font-weight:700;font-size:1.55rem;line-height:1.5;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-tile .bt-sub{font-size:.56rem;font-weight:700;letter-spacing:2.6px;color:#a21caf;margin-top:-2px}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.brand-tile .bt-mark{background:none;color:#7c3aed}}
 .proj .thumb .tag-live{position:relative;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.85);border:1px solid #a7e8cd;color:#047857;font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px)}
 .proj .thumb .tag-live i{width:7px;height:7px;border-radius:50%;background:#10b981;animation:pulse 1.6s infinite}
 .proj .thumb .tag-soft{position:relative;background:rgba(255,255,255,.85);border:1px solid var(--brd);color:var(--muted);font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:999px}
@@ -197,7 +212,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
   section{padding:78px 0 20px}
 }
 @media (max-width:720px){
-  .nav-links{position:fixed;inset:0 0 auto 0;top:64px;flex-direction:column;align-items:flex-start;gap:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);padding:10px 24px 20px;border-bottom:1px solid var(--brd);box-shadow:var(--shadow-lg);transform:translateY(-130%);transition:transform .35s}
+  .nav-links{position:fixed;inset:0 0 auto 0;top:64px;flex-direction:column;align-items:flex-start;gap:0;background:rgba(255,255,255,.45);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);padding:10px 24px 20px;border-bottom:1px solid rgba(255,255,255,.18);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.6);transform:translateY(-130%);transition:transform .35s}
   .nav-links.open{transform:none}
   .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid #eef1f7}
   .nav-links .btn{margin-top:14px}
@@ -209,6 +224,9 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
+}
+@media (prefers-reduced-transparency:reduce){
+  .glass,header.scrolled,.nav-links,.brand-tile{background:rgba(255,255,255,.97);-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 </style>
 </head>
@@ -253,17 +271,21 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
           <div class="stat"><div class="num"><span class="count" data-to="10">0</span>+</div><div class="lbl">Technologies</div></div>
         </div>
       </div>
-      <div class="codecard reveal in">
-        <div class="bar"><i style="background:#f87171"></i><i style="background:#fbbf24"></i><i style="background:#34d399"></i><span class="f">maruf.ts — profile</span></div>
-        <pre><span class="tk-k">const</span> <span class="tk-f">maruf</span> <span class="tk-p">=</span> {
-  <span class="tk-p">role:</span> <span class="tk-s">"ML Engineer &amp; CSE Student"</span>,
-  <span class="tk-p">university:</span> <span class="tk-s">"Northern University Bangladesh"</span>,
-  <span class="tk-p">based:</span> <span class="tk-s">"Dhaka, Bangladesh"</span>,
-  <span class="tk-p">focus:</span> [<span class="tk-s">"AI systems"</span>, <span class="tk-s">"web apps"</span>,
-            <span class="tk-s">"automation"</span>],
-  <span class="tk-p">currently:</span> <span class="tk-s">"first research paper 📄"</span>,
-  <span class="tk-p">openToWork:</span> <span class="tk-n">true</span>
-};</pre>
+      <div class="profilecard glass reveal in">
+        <div class="pc-top">
+          <div class="pc-avatar" aria-hidden="true">MT</div>
+          <div>
+            <div class="pc-name">Maruf Talukder</div>
+            <div class="pc-role">ML Engineer &amp; CSE Student</div>
+          </div>
+        </div>
+        <div class="pc-status"><span class="pulse"></span> Open to work</div>
+        <div class="pc-rows">
+          <div class="pc-row"><span class="k">University</span><span class="v">Northern University Bangladesh</span></div>
+          <div class="pc-row"><span class="k">Based in</span><span class="v">Dhaka, Bangladesh</span></div>
+          <div class="pc-row"><span class="k">Focus</span><span class="v">AI systems · Web apps · Automation</span></div>
+        </div>
+        <div class="pc-now"><b>Currently:</b> writing my first research paper 📄</div>
       </div>
     </div>
     <div class="scroll-hint"><div class="mouse"></div></div>
@@ -357,9 +379,9 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
           </div>
         </article>
         <article class="proj reveal d2">
-          <div class="thumb t-chat"><span class="glyph">চি</span><span class="tag-soft">PERSONAL PROJECT</span></div>
+          <div class="thumb t-chat"><span class="brand-tile"><span class="bt-mark">চিঠি</span><span class="bt-sub">CHITTHI</span></span><span class="tag-soft">PERSONAL PROJECT</span></div>
           <div class="body">
-            <h3>চিঠি · Chitthi Messenger</h3>
+            <h3><span class="bn">চিঠি</span> · Chitthi Messenger</h3>
             <p>A flagship-grade realtime messenger rebuilt from research on what users actually want: reactions, pins, polls, stories, scheduled &amp; disappearing messages, and real WebRTC voice/video calls — with a hardened security model.</p>
             <div class="tags"><span class="chip">Realtime</span><span class="chip">WebRTC</span><span class="chip">Firebase</span><span class="chip">Security</span></div>
             <div class="links"><a href="https://github.com/maruftalukder1" target="_blank" rel="noopener">More on GitHub ↗</a></div>
@@ -394,7 +416,7 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
       <div class="timeline">
         <div class="tl-item reveal"><div class="when">2026 — NOW</div><h3>First research paper</h3><p>Turning the PawMatch symptom checker into a peer-reviewed conference paper — honest evaluation, held-out validation, and a safety pattern other builders can reuse.</p></div>
         <div class="tl-item reveal"><div class="when">2026</div><h3>PawMatch goes live</h3><p>Shipped a five-person team project as a real product on my own domain — realtime platform, AI features, and a growing set of real pets, shelters and adoption applications.</p></div>
-        <div class="tl-item reveal"><div class="when">2026</div><h3>চিঠি · Chitthi messenger rebuild</h3><p>Rebuilt a chat app to flagship standard — full feature set, real WebRTC calling, and a security pass that fixed every finding I could throw at it.</p></div>
+        <div class="tl-item reveal"><div class="when">2026</div><h3><span class="bn">চিঠি</span> · Chitthi messenger rebuild</h3><p>Rebuilt a chat app to flagship standard — full feature set, real WebRTC calling, and a security pass that fixed every finding I could throw at it.</p></div>
         <div class="tl-item reveal"><div class="when">2026</div><h3>Freelancing with AI automation</h3><p>Started offering n8n + OpenAI automation — lead-capture chatbots and workflow integrations for small businesses.</p></div>
         <div class="tl-item reveal"><div class="when">2029</div><h3>BSc in CSE (expected)</h3><p>Computer Science &amp; Engineering, Northern University Bangladesh — currently in my second year, Section 5A.</p></div>
       </div>

@@ -272,6 +272,23 @@ footer .mono{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#93a4
   .hero-stats{gap:24px}
   .research{padding:26px 20px}
 }
+/* ---------- liquid glass legibility fix (2026-10-31 audit) ---------- */
+/* Pixel-measured WCAG failures on glass at the old .45 tint (palette
+   placeholder 1.15:1, palette footer hints 1.09:1, palette item subtitle on
+   bare glass 2.08:1, mobile-menu nav number 4.47:1, plus several surfaces
+   within 0.15 of the AA line): white tint strengthened and muted / accent
+   text darkened ON GLASS SURFACES ONLY. Blur(14px) saturate(140%) recipe
+   unchanged — the Liquid Glass look is kept. Full audit: SMART_SITE_REPORT.md,
+   "Liquid Glass legibility audit" (2026-10-31). */
+.glass{background:rgba(255,255,255,.78);border-color:rgba(255,255,255,.55);--muted:#47597a}
+header.scrolled{background:rgba(255,255,255,.82);border-color:rgba(255,255,255,.5);--muted:#47597a}
+header .nav-links a .no{color:#1d4ed8}
+.palette input::placeholder{color:#47597a}
+.pal-foot{color:#47597a}
+#toTop{color:#1d4ed8}
+@media (max-width:720px){
+  .nav-links{background:rgba(255,255,255,.85);border-bottom-color:rgba(255,255,255,.5);--muted:#47597a}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
